@@ -1,0 +1,8 @@
+- hosts: 
+  - ansible-controler
+  become: yes
+  roles:
+  - common
+  - docker
+  - ansible
+  - awx

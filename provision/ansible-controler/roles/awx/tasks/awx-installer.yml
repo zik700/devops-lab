@@ -1,0 +1,32 @@
+- name: Create directory for AWX
+  file:
+    path: /home/vagrant/awx
+    state: directory
+
+- name: Checkout AWX repository
+  git:
+    repo: https://github.com/ansible/awx.git
+    dest: /home/vagrant/awx/
+    depth: 50
+    version: 17.0.1
+    force: yes
+
+- name: Create AWX secret key
+  shell: pwgen -N 1 -s 30
+  register: key
+
+- name: Copy my inventory file
+  copy:
+    src: inventory
+    dest: /home/vagrant/awx/installer
+
+- name: Add secret key to file
+  lineinfile:
+    path: /home/vagrant/awx/installer/inventory
+    regexp: 'secret_key=key'
+    line: 'secret_key={{ key.stdout }}'
+
+- name: Run installation
+  shell: |
+    ansible-playbook /home/vagrant/awx/installer/install.yml -i /home/vagrant/awx/installer/inventory  >> /var/log/ansible/install.log
+  become: yes

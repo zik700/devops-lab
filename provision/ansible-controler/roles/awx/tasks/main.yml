@@ -1,0 +1,3 @@
+---
+# tasks file for roles/awx
+- include: awx-installer.yml

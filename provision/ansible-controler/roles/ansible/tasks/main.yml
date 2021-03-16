@@ -1,0 +1,4 @@
+---
+# tasks file for roles/ansible
+- include: repository.yml
+- include: install-ansible.yml

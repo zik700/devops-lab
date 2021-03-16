@@ -1,0 +1,10 @@
+---
+# tasks file for roles/ruby
+- name: Install ruby dependencies
+  apt:
+    pkg:
+    - ruby-dev
+    - ruby-bundler
+    - rubygems
+    state: latest
+    update-cache: yes

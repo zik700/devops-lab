@@ -1,0 +1,5 @@
+---
+# tasks file for roles/common
+# - include: common-pkgs.yml
+- include: alternatives.yml
+# - include: python-extensions.yml

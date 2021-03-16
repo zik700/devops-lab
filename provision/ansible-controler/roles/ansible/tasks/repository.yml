@@ -1,0 +1,21 @@
+- name: Add apt-key
+  apt_key:  
+    keyserver: keyserver.ubuntu.com
+    id: 93C4A3FD7BB9C367
+
+- name: Add ansible source list file
+  copy:
+    content: ""
+    dest: /etc/apt/sources.list.d/ansible.list
+    force: no
+
+
+- name: Add ansible repository do sources lists
+  lineinfile:
+    path: /etc/apt/sources.list.d/ansible.list
+    state: present
+    line: 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main'
+
+- name: Update cache
+  apt:
+    update_cache: yes

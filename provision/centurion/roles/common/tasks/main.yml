@@ -1,0 +1,11 @@
+---
+# tasks file for roles/common
+
+- name: Install gcc and make
+  apt:
+    pkg:
+    - make
+    - gcc
+    - git
+    state: latest
+    update-cache: yes

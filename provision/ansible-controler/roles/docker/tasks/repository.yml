@@ -1,0 +1,17 @@
+- name: Get gpg key
+  shell: |
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+- name: Add fingerprint 
+  shell: |
+    apt-key fingerprint 0EBFCD88
+
+- name: Work out the distribution
+  command: lsb_release -sc
+  register: distro
+
+- name: Add new repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distro.stdout }} stable
+    state: present
+  # when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

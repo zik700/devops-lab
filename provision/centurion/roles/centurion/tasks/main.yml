@@ -1,0 +1,17 @@
+---
+# tasks file for roles/centurion
+- name: Create centurion directory
+  file:
+    path: /home/vagrant/centurion
+    state: directory
+
+- name: Clone latest repo version of centurion from NewRelic
+  git:
+    repo: https://github.com/newrelic/centurion.git
+    dest: /home/vagrant/centurion
+    clone: yes 
+  
+- name: Install centurion
+  gem:
+    name: centurion
+    state: present

@@ -1,0 +1,4 @@
+---
+# tasks file for roles/docker
+- include: repository.yml
+- include: install-docker.yml

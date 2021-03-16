@@ -1,0 +1,14 @@
+# - name: Update python alternatives
+#   community.general.alternatives:
+#     name: python
+#     path: /usr/bin/python
+#     link: /usr/bin/python3.6
+#     priority: -1
+
+- name: Register alternatives for python 
+  shell: |
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+
+- name: Set alternatives python3 for python
+  shell: |
+    update-alternatives  --set python /usr/bin/python3
